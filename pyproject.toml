@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cloud-workload-forecasting"
+version = "1.0.0"
+description = "Forecasting aggregate cloud workload (Azure VM trace): persistence baseline vs damped-trend ETS"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.0",
+    "scipy>=1.11",
+    "statsmodels>=0.14",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+# "dev" = test tools + what is needed to open and re-run the notebook
+dev = [
+    "pytest>=8.0",
+    "jupyterlab>=4.0",
+    "nbconvert>=7.0",
+    "nbformat>=5.9",
+    "ipykernel>=6.25",
+]
+
+[project.scripts]
+cwfc-predict = "cwfc.predict:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
